@@ -11,7 +11,7 @@ cred = credentials.Certificate('utilities/cred.json')
 # Check if the default app is already initialized
 if not firebase_admin._apps:
     firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://concurrent-demo-default-rtdb.firebaseio.com/'  # Replace with your Firebase Realtime Database URL
+        'databaseURL': 'your firebase url'  # Replace with your Firebase Realtime Database URL
     })
 
 class MyView(View):
@@ -21,10 +21,10 @@ class MyView(View):
                 return await response.json()
 
     async def save_response_to_firebase(self, response):
-        # Add the response to Firebase Realtime Database
-        ref = db.reference('api_responses')  # Reference to the 'api_responses' node in the database
-        new_response_ref = ref.push()  # Generate a new unique key for the response
-        new_response_ref.set(response)  # Set the response data using the unique key
+
+        ref = db.reference('api_responses')
+        new_response_ref = ref.push()
+        new_response_ref.set(response)  
 
     async def make_api_calls(self, urls):
         for url in urls:
